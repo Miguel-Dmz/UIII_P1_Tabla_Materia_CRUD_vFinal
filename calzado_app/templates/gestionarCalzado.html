@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <h1>Registrar Calzado</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarCalzado/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="txtcodigo" name="txtcodigo" class="form-control" placeholder="ID Calzado" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtmaterial" name="txtmaterial" class="form-control" placeholder="Material" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txttalla" name="txttalla" class="form-control" placeholder="Talla" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtprecio" name="txtprecio" class="form-control" placeholder="Precio" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtcolor" name="txtcolor" class="form-control" placeholder="Color" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txttipo" name="txttipo" class="form-control" placeholder="Tipo" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtmodelo" name="txtmodelo" class="form-control" placeholder="Modelo" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <img class="w-50" src="{% static 'img/calzado.jpg' %}" width="400" height="400" alt="">
+        <h1>Listado de Calzados</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID Calzado</th>
+                        <th>Nombre</th>
+                        <th>Material</th>
+                        <th>Talla</th>
+                        <th>Precio</th>
+                        <th>Color</th>
+                        <th>Tipo</th>
+                        <th>Modelo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in mis_calzados %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ c.id_calzado }}</td>
+                        <td>{{ c.nombre_c }}</td>
+                        <td>{{ c.material_c }}</td>
+                        <td>{{ c.talla_c }}</td>
+                        <td>{{ c.precio_c }}</td>
+                        <td>{{ c.color_C }}</td>
+                        <td>{{ c.tipo_c }}</td>
+                        <td>{{ c.modelo_c }}</td>
+                        <td>
+                            <a href="seleccionarCalzado/{{ c.id_calzado }}" class="btn btn-info">Editar</a>
+                            <a href="borrarCalzado/{{ c.id_calzado }}" class="btn btn-danger">Borrar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
