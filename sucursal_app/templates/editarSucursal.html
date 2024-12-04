@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h1>Editar Sucursal</h1>
+                <form action="/editarSucursal/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="txtid" class="form-control" value="{{ sucursal.id_sucursal }}" readonly>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" name="txtempleado" class="form-control" value="{{ sucursal.id_empleado }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="number" name="txtcontacto" class="form-control" value="{{ sucursal.contacto_s }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" name="txtdireccion" class="form-control" value="{{ sucursal.direccion_s }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="email" name="txtcorreo" class="form-control" value="{{ sucursal.correo_s }}" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" name="txthorario" class="form-control" value="{{ sucursal.horario }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
